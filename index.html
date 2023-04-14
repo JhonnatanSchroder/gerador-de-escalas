@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Escala de Bandas</title>
+	<style>
+		body {
+			font-family: Arial, sans-serif;
+			background-color: #f2f2f2;
+		}
+		h1 {
+		    font-size:3rem;
+			text-align: center;
+			margin-top: 50px;
+			color: #333;
+		}
+		textarea {
+			display: block;
+			margin: 50px auto;
+			width: 80%;
+			height: 50vh;
+			resize: none;
+			border: none;
+			background-color: #fff;
+			padding: 10px;
+			color: #333;
+			font-size: 16px;
+			box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+		}
+		button {
+		    width: 80%;
+		    font-size:3rem;
+			display: block;
+			margin: 0 auto;
+			padding: 50px;
+			background-color: #007bff;
+			color: #fff;
+			border: none;
+			border-radius: 5px;
+			cursor: pointer;
+			box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+		}
+		button:hover {
+			background-color: #0062cc;
+		}
+	</style>
+</head>
+<body>
+	<h1>Escala de Bandas</h1>
+	<textarea id="result"></textarea>
+	<button onclick="copyText()">Copiar</button>
+
+	<script>
+		function copyText() {
+			var copyText = document.getElementById("result");
+			copyText.select();
+			copyText.setSelectionRange(0, 99999);
+			document.execCommand("copy");
+			alert("Texto copiado para a área de transferência!");
+		}
+
+		function generateSchedule() {
+      const currentDate =  new Date();
+      const m = currentDate.getMonth();
+      const monthsOfYear = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"]
+
+   
+			var daysOfWeek = ["Domingo", "Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sábado"];
+			var schedule = `*Escala do mês de ${monthsOfYear[m]}* \n \n`;
+
+      
+
+			for (var i = 1; i <= 31; i++) {
+				var date = new Date(2023, 3, i);
+				var dayOfWeek = daysOfWeek[date.getDay()];
+
+				if (dayOfWeek == "Terça" || dayOfWeek == "Sexta" || dayOfWeek == "Domingo") {
+					var bandNames = ["Banda 1️⃣", "Banda 2️⃣", "Banda 3️⃣"];
+					var randomIndex = Math.floor(Math.random() * bandNames.length);
+					var bandName = bandNames[randomIndex];
+         
+					schedule += "*" + dayOfWeek + ", " + i + ` de ${monthsOfYear[m]}:* \n ` + bandName + "\n \n";
+				}
+			}
+
+			return schedule;
+		}
+
+		document.getElementById("result").value = generateSchedule();
+	</script>
+</body>
+</html>
