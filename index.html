@@ -60,6 +60,7 @@
 
 		function generateSchedule() {
       const currentDate =  new Date();
+      const currentYear = currentDate.getFullYear();
       const m = currentDate.getMonth();
       const monthsOfYear = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"]
 
@@ -70,7 +71,7 @@
       
 
 			for (var i = 1; i <= 31; i++) {
-				var date = new Date(2024, m, i);
+				var date = new Date(currentYear, m, i);
 				var dayOfWeek = daysOfWeek[date.getDay()];
 
 				if (dayOfWeek == "Terça" || dayOfWeek == "Domingo") {
